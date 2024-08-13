@@ -4,7 +4,7 @@ import axios from "axios";
 // Thunk for fetching Pokémon data
 export const fetchPokemons = createAsyncThunk(
   "pokemon/fetchPokemons",
-  async (url = "https://pokeapi.co/api/v2/pokemon/?limit=30") => {
+  async (url = "https://pokeapi.co/api/v2/pokemon/?limit=36") => {
     const response = await axios.get(url);
     return response.data;
   }
