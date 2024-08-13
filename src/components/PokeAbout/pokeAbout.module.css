@@ -1,0 +1,10 @@
+.aboutDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #555;
+}
+
+.infoItem {
+  font-size: 1.1rem;
+}

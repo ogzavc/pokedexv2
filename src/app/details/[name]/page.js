@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import LinearProgress from "@mui/material/LinearProgress";
+
 import Button from "@mui/material/Button";
 import { useAppSelector, useAppDispatch } from "../../../lib/hooks";
 import {
@@ -11,6 +11,8 @@ import {
 import styles from "./details.module.css";
 import PokeCard from "../../../components/PokeCard";
 import PokeAbilities from "../../../components/PokeAbilities";
+import PokeAbout from "../../../components/PokeAbout";
+import PokeStats from "../../../components/PokeStats";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function Details() {
@@ -62,9 +64,7 @@ export default function Details() {
           <section className={styles.detailSection}>
             <h2>Abilities</h2>
 
-            <div className={styles.infoItem}>
-              <PokeAbilities abilities={abilities} />
-            </div>
+            <PokeAbilities abilities={abilities} />
           </section>
         </div>
 
@@ -72,35 +72,18 @@ export default function Details() {
           <div className={styles.detailsContent}>
             <section className={styles.detailSection}>
               <h2>About</h2>
-              <div className={styles.aboutDetails}>
-                <div className={styles.infoItem}>
-                  <strong>Height:</strong> {height / 10} m
-                </div>
-                <div className={styles.infoItem}>
-                  <strong>Weight:</strong> {weight / 10} kg
-                </div>
-                <div className={styles.infoItem}>
-                  <strong>Base Experience:</strong> {base_experience} xp
-                </div>
-              </div>
+
+              <PokeAbout
+                height={height}
+                weight={weight}
+                experience={base_experience}
+              />
             </section>
 
             <section className={styles.detailSection}>
               <h2>Stats</h2>
-              <div className={styles.stats}>
-                {stats.map((stat, index) => (
-                  <div key={index} className={styles.statItem}>
-                    <span className={styles.statName}>{stat.stat.name}</span>
-                    <LinearProgress
-                      variant="determinate"
-                      value={(stat.base_stat / 255) * 100}
-                      className={styles.statBar}
-                    />
 
-                    <span className={styles.statNumber}>{stat.base_stat}</span>
-                  </div>
-                ))}
-              </div>
+              <PokeStats stats={stats} />
             </section>
           </div>
         </div>

@@ -1,13 +1,17 @@
+import styles from "./pokeAbilities.module.css";
+
 function PokeAbilities({ abilities = [] }) {
   return (
-    <ul>
-      {abilities.map((ability, index) => (
-        <li key={index}>
-          {ability.ability.name}
-          {ability.is_hidden && " (Hidden Ability)"}
-        </li>
-      ))}
-    </ul>
+    <div className={styles.infoItem}>
+      <ul>
+        {abilities.map((ability, index) => (
+          <li key={index}>
+            {ability.ability.name}
+            {ability.is_hidden && " (Hidden Ability)"}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
