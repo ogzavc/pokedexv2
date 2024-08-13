@@ -42,7 +42,6 @@ export default function Home() {
   };
 
   const handleCardClick = (pokemonName) => {
-    console.log(pokemonName);
     router.push(`/details/${pokemonName}`);
   };
 

@@ -1,15 +1,22 @@
+.detailsPageWrapper {
+  margin-top: 20px;
+}
+
 .detailsPage {
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 20px;
-  margin: 0 auto;
-  margin-top: 20px;
   display: flex;
+  flex-direction: column;
 }
 
 .division {
-  width: 50%;
-  margin: 0px 10px;
+  width: 100%;
+  margin: 0px;
+}
+
+.backButton {
+  margin-bottom: 20px;
 }
 
 .detailCard {
@@ -74,7 +81,8 @@
 .detailsContent {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .detailSection {
@@ -135,4 +143,20 @@
   text-align: right;
   font-size: 1.1rem;
   color: #333;
+}
+
+@media (min-width: 992px) {
+  .detailsPage {
+    flex-direction: row;
+  }
+
+  .division {
+    width: 50%;
+    margin: 0px 10px;
+  }
+
+  .detailsContent {
+    gap: 30px;
+    margin-bottom: 0px;
+  }
 }

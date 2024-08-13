@@ -5,7 +5,7 @@ import { themeColors, iconColors, typeIcons } from "../../utils/constants";
 import Image from "next/image";
 import styles from "./pokeCard.module.css";
 
-function PokeCard({ pokemonName, onClick }) {
+function PokeCard({ pokemonName, isSmall = true, onClick }) {
   const pokemon = useAppSelector((state) =>
     selectPokemonByName(state, pokemonName)
   );
@@ -19,7 +19,7 @@ function PokeCard({ pokemonName, onClick }) {
 
   return (
     <div
-      className={styles.pokeCard}
+      className={`${styles.pokeCard} ${isSmall ? styles.cardHover : ""}`}
       style={{ "--backgroundColor": backgroundColor }}
       onClick={onClick}
     >
@@ -46,10 +46,12 @@ function PokeCard({ pokemonName, onClick }) {
       </div>
       <div className={styles.pokeImageContainer}>
         <Image
+          priority
           src={sprites.other["official-artwork"].front_default}
           alt={name}
-          width={120}
-          height={120}
+          layout="responsive"
+          width={100}
+          height={100}
           className={styles.pokeImage}
         />
       </div>
