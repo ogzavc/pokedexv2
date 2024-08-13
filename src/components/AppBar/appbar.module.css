@@ -1,0 +1,17 @@
+.logoContainer {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.userMenuButton {
+  padding: 0;
+}
+
+.menuStyles {
+  margin-top: 45px;
+}
+
+.menuItemText {
+  text-align: center;
+}
