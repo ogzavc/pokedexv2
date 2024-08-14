@@ -5,7 +5,7 @@ import { selectPokemonByName } from "@/lib/features/pokemonDetailsSlice/pokemonD
 import { themeColors } from "@/utils/constants";
 import { idFormatter } from "@/utils/helpers";
 import { PokeBadge } from "@/components";
-import styles from "./pokeCard.module.css";
+import styles from "./styles.module.css";
 
 function PokeCard({ pokemonName, isSmall = true, onClick }) {
   const pokemon = useAppSelector((state) =>

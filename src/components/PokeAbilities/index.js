@@ -1,4 +1,4 @@
-import styles from "./pokeAbilities.module.css";
+import styles from "./styles.module.css";
 
 function PokeAbilities({ abilities = [] }) {
   return (

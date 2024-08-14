@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Button from "@mui/material/Button";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import styles from "./page.module.css";
+import styles from "./styles.module.css";
 import PokeCard from "@/components/PokeCard";
 import { NavigateBeforeIcon, NavigateNextIcon } from "@/components/Icons";
 

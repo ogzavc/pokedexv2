@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import Button from "@mui/material/Button";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { myFavoritePokemons } from "@/utils/helpers";
-import styles from "./page.module.css";
+import styles from "./styles.module.css";
 import PokeCard from "@/components/PokeCard";
 
 export default function MyPokemons() {

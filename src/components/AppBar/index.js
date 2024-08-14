@@ -11,7 +11,7 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
-import styles from "./appBar.module.css";
+import styles from "./styles.module.css";
 
 const menuPages = [
   { page: "/profile", title: "Profile" },

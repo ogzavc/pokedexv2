@@ -14,7 +14,7 @@ import {
   NavigateBeforeIcon,
   FavoriteIcon,
 } from "@/components/Icons";
-import styles from "./details.module.css";
+import styles from "./styles.module.css";
 
 export default function Details() {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function Details() {
     if (name && !pokemon) {
       dispatch(fetchPokemonDetails(name));
     }
-  }, [dispatch]);
+  }, [name, pokemon, dispatch]);
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];

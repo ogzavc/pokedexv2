@@ -1,4 +1,4 @@
-import styles from "./pokeAbout.module.css";
+import styles from "./styles.module.css";
 
 function PokeAbout({ height, weight, experience }) {
   return (
