@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { myFavoritePokemons } from "@/utils/helpers";
-import { PokeCard, Skeleton } from "@/components";
+import { PokeCard, Skeleton, Button } from "@/components";
+import { NavigateBeforeIcon } from "@/components/Icons";
 import styles from "./styles.module.css";
 
 export default function MyPokemons() {
@@ -32,10 +33,14 @@ export default function MyPokemons() {
     router.push(`/details/${pokemonName}`);
   };
 
+  const handleBackClick = () => {
+    router.back();
+  };
+
   if (isLoading) {
     return (
       <main className={styles.main}>
-        <div className={styles.homeWrapper}>
+        <div className={styles.myPokemonsWrapper}>
           {Array.from({ length: 12 }).map((_, index) => (
             <Skeleton
               key={index}
@@ -51,9 +56,15 @@ export default function MyPokemons() {
   }
 
   return (
-    <main className={styles.main}>
+    <main className={styles.myPokemons}>
+      <div className={styles.myPokemonsHeader}>
+        <Button color="inherit" variant="outlined" onClick={handleBackClick}>
+          <NavigateBeforeIcon />
+        </Button>
+      </div>
+
       {pokemons.length > 0 ? (
-        <div className={styles.homeWrapper}>
+        <div className={styles.myPokemonsWrapper}>
           {pokemons.map((name) => (
             <PokeCard
               key={name}

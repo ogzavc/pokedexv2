@@ -1,4 +1,3 @@
-"use client";
 import { iconColors, typeIcons } from "@/utils/constants";
 import styles from "./styles.module.css";
 

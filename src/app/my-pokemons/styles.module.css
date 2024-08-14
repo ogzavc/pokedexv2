@@ -1,13 +1,13 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+.myPokemons {
   padding: 2rem 1rem 1rem;
-  min-height: 100vh;
 }
 
-.homeWrapper {
+.myPokemonsHeader {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.myPokemonsWrapper {
   display: grid;
   gap: 20px;
   max-width: 100%;
@@ -15,25 +15,25 @@
 }
 
 @media (max-width: 1600px) {
-  .homeWrapper {
+  .myPokemonsWrapper {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 1200px) {
-  .homeWrapper {
+  .myPokemonsWrapper {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 992px) {
-  .homeWrapper {
+  .myPokemonsWrapper {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
 @media (max-width: 576px) {
-  .homeWrapper {
+  .myPokemonsWrapper {
     grid-template-columns: 1fr;
   }
 }
