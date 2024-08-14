@@ -1,7 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-
 import Button from "@mui/material/Button";
 import { useAppSelector, useAppDispatch } from "../../../lib/hooks";
 import {
@@ -13,7 +12,11 @@ import PokeCard from "../../../components/PokeCard";
 import PokeAbilities from "../../../components/PokeAbilities";
 import PokeAbout from "../../../components/PokeAbout";
 import PokeStats from "../../../components/PokeStats";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {
+  FavoriteBorderIcon,
+  NavigateBeforeIcon,
+  FavoriteIcon,
+} from "../../../components/Icons";
 
 export default function Details() {
   const router = useRouter();
@@ -55,8 +58,17 @@ export default function Details() {
         className={styles.backButton}
         onClick={handleBackClick}
       >
-        <ArrowBackIcon />
+        <NavigateBeforeIcon />
       </Button>
+
+      <Button
+        variant="outlined"
+        className={styles.backButton}
+        onClick={handleBackClick}
+      >
+        <FavoriteBorderIcon />
+      </Button>
+
       <section className={styles.detailsPage}>
         <div className={`${styles.division} ${styles.detailsContent}`}>
           <PokeCard pokemonName={name} isSmall={false} />

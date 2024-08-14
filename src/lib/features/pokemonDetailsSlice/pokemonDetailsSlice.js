@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../../../api/axiosInstance";
 
 export const fetchPokemonDetails = createAsyncThunk(
   "pokemonDetails/fetchPokemonDetails",
@@ -11,9 +11,7 @@ export const fetchPokemonDetails = createAsyncThunk(
       return { name, data: existingPokemon.data };
     }
 
-    const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${name}`
-    );
+    const response = await axiosInstance.get(`/${name}`);
     return { name, data: response.data };
   }
 );

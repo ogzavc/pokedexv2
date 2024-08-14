@@ -31,18 +31,14 @@ function ResponsiveAppBar() {
     router.push(page);
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      handleSearch();
-    }
-  };
-
   return (
     <AppBar color="default" position="relative">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box className={styles.logoContainer}>
+          <Box
+            className={styles.logoContainer}
+            onClick={() => router.push(`/`)}
+          >
             <Image
               src="/logo.svg"
               width={200}

@@ -18,6 +18,10 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import StarIcon from "@mui/icons-material/Star";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import HelpIcon from "@mui/icons-material/Help";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export {
   AdjustIcon,
@@ -40,4 +44,8 @@ export {
   StarIcon,
   Brightness7Icon,
   HelpIcon,
+  NavigateBeforeIcon,
+  NavigateNextIcon,
+  FavoriteBorderIcon,
+  FavoriteIcon,
 };
