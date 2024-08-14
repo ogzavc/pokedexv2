@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Button from "@mui/material/Button";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
@@ -7,18 +7,21 @@ import {
   selectPokemonByName,
   fetchPokemonDetails,
 } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import styles from "./details.module.css";
+import { addOrRemoveFavorite } from "@/utils/helpers";
 import { PokeCard, PokeAbilities, PokeAbout, PokeStats } from "@/components";
 import {
   FavoriteBorderIcon,
   NavigateBeforeIcon,
   FavoriteIcon,
 } from "@/components/Icons";
+import styles from "./details.module.css";
 
 export default function Details() {
   const router = useRouter();
   const { name } = useParams();
   const dispatch = useAppDispatch();
+
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const pokemon = useAppSelector((state) => selectPokemonByName(state, name));
   const status = useAppSelector((state) => state.pokemonDetails.status);
@@ -28,6 +31,11 @@ export default function Details() {
       dispatch(fetchPokemonDetails(name));
     }
   }, [pokemon, name, dispatch]);
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(favorites.includes(name));
+  }, []);
 
   if (!pokemon) {
     return null;
@@ -43,8 +51,13 @@ export default function Details() {
     return <div className={styles.error}>Failed to load Pokémon details.</div>;
   }
 
-  const handleBackClick = (pokemonName) => {
-    router.push(`/`);
+  const handleBackClick = () => {
+    router.back();
+  };
+
+  const handleFavoriteClick = () => {
+    addOrRemoveFavorite(name);
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -54,8 +67,8 @@ export default function Details() {
           <NavigateBeforeIcon />
         </Button>
 
-        <Button variant="outlined" onClick={handleBackClick}>
-          <FavoriteBorderIcon />
+        <Button variant="outlined" onClick={handleFavoriteClick}>
+          {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </Button>
       </div>
 

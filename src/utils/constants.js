@@ -19,7 +19,7 @@ import {
   StarIcon,
   Brightness7Icon,
   HelpIcon,
-} from "../components/Icons";
+} from "@/components/Icons";
 
 export const themeColors = {
   fire: "#ff8d8d",
