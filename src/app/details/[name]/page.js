@@ -1,20 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Button from "@mui/material/Button";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import {
   selectPokemonByName,
   fetchPokemonDetails,
 } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import { addOrRemoveFavorite } from "@/utils/helpers";
-import { PokeCard, PokeAbilities, PokeAbout, PokeStats } from "@/components";
+import {
+  PokeCard,
+  PokeAbilities,
+  PokeAbout,
+  PokeStats,
+  Button,
+  Skeleton,
+} from "@/components";
 import {
   FavoriteBorderIcon,
   NavigateBeforeIcon,
   FavoriteIcon,
 } from "@/components/Icons";
-import Skeleton from "@mui/material/Skeleton";
+import { addOrRemoveFavorite } from "@/utils/helpers";
 import styles from "./styles.module.css";
 
 export default function Details() {

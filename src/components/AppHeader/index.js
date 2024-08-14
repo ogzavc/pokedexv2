@@ -1,16 +1,19 @@
 "use client";
-import Image from "next/image";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  Image,
+  AppBar,
+  Container,
+  Toolbar,
+  Box,
+  IconButton,
+  Avatar,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@/components";
 import styles from "./styles.module.css";
 
 const menuPages = [
@@ -18,7 +21,7 @@ const menuPages = [
   { page: "/my-pokemons", title: "My Pokemons" },
 ];
 
-function ResponsiveAppBar() {
+function AppHeader() {
   const router = useRouter();
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -89,4 +92,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default AppHeader;

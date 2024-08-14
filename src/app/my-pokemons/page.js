@@ -2,12 +2,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import Skeleton from "@mui/material/Skeleton";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { myFavoritePokemons } from "@/utils/helpers";
+import { PokeCard, Skeleton } from "@/components";
 import styles from "./styles.module.css";
-import PokeCard from "@/components/PokeCard";
 
 export default function MyPokemons() {
   const dispatch = useDispatch();

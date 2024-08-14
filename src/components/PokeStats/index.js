@@ -1,5 +1,5 @@
+import { LinearProgress } from "@/components";
 import styles from "./styles.module.css";
-import LinearProgress from "@mui/material/LinearProgress";
 
 function PokeStats({ stats = [] }) {
   return (
