@@ -43,14 +43,6 @@ export default function Details() {
 
   const { abilities, height, weight, stats, base_experience } = pokemon.data;
 
-  if (status === "loading") {
-    return <div className={styles.loading}>Loading...</div>;
-  }
-
-  if (status === "failed") {
-    return <div className={styles.error}>Failed to load Pokémon details.</div>;
-  }
-
   const handleBackClick = () => {
     router.back();
   };
