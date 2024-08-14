@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Pokedex V2
 
-First, run the development server:
+Welcome to **Pokedex V2**! This project is a modern, responsive web application built to explore Pokémon data in an interactive and user-friendly manner. It allows users to browse through different Pokémon, view detailed information, and mark their favorites for quick access later.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Check out the live version of the project here: [Pokedex V2 Live](https://pokedexv2-tau.vercel.app/)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Project Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Pokedex V2 is built using the latest web technologies to provide a seamless and engaging user experience. The application fetches data from the [PokeAPI](https://pokeapi.co/), which is a comprehensive API for accessing Pokémon information. The project features:
 
-## Learn More
+- A dynamic list of Pokémons
+- Detailed Pokémon pages displaying stats, abilities, and more
+- The ability to mark Pokémon as favorites, which are saved in local storage
+- Responsive design ensuring the application works well on both desktop and mobile devices
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project leverages the following technologies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **React 18**: A JavaScript library for building user interfaces, providing the foundation for the app's dynamic components.
+- **Next.js 14**: A powerful React framework that allows for server-side rendering, routing, and optimized performance.
+- **Redux**: A predictable state container for JavaScript apps, used here for managing the application state across components.
+- **PokeAPI**: The source of Pokémon data used in this project, providing detailed information on each Pokémon.
 
-## Deploy on Vercel
+## Running the Project Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To run this project on your local machine, follow these steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/ogzavc/pokedexv2.git
+   cd pokedexv2
+   ```
+
+2. **Install dependencies:**
+
+   Make sure you have Node.js installed, then run:
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+
+   Start the local development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The application should now be running on `http://localhost:3000`.
+
+4. **Building for production:**
+
+   To create an optimized production build, run:
+
+   ```bash
+   npm run build
+   ```
+
+   Then, start the production server with:
+
+   ```bash
+   npm start
+   ```
+
+ 
