@@ -1,10 +1,9 @@
 "use client";
-import Image from "next/image";
 import { useAppSelector } from "@/lib/hooks";
 import { selectPokemonByName } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { themeColors } from "@/utils/constants";
 import { idFormatter } from "@/utils/helpers";
-import { PokeBadge } from "@/components";
+import { PokeBadge, Image } from "@/components";
 import styles from "./styles.module.css";
 
 function PokeCard({ pokemonName, isSmall = true, onClick }) {

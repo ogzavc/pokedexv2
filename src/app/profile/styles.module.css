@@ -1,0 +1,52 @@
+.myProfileWrapper {
+  margin-top: 20px;
+}
+
+.myProfileHeader {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.myProfilePage {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+}
+
+.myProfilePageDetails {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+.myProfileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.myProfileFormCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 992px) {
+  .myProfilePageDetails {
+    flex-direction: row;
+  }
+
+  .myProfileForm {
+    flex-direction: column;
+    width: unset;
+  }
+
+  .myProfileFormCol {
+    flex-direction: row;
+  }
+}
