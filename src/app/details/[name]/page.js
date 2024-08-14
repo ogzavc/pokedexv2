@@ -24,18 +24,17 @@ export default function Details() {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const pokemon = useAppSelector((state) => selectPokemonByName(state, name));
-  const status = useAppSelector((state) => state.pokemonDetails.status);
 
   useEffect(() => {
-    if (!pokemon) {
+    if (name && !pokemon) {
       dispatch(fetchPokemonDetails(name));
     }
-  }, [pokemon, name, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setIsFavorite(favorites.includes(name));
-  }, []);
+  }, [name]);
 
   if (!pokemon) {
     return null;

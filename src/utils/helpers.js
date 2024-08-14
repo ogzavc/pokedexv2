@@ -5,20 +5,25 @@ export const idFormatter = (id) => {
 };
 
 export const myFavoritePokemons = () => {
-  return JSON.parse(localStorage.getItem("favorites")) || [];
+  if (typeof window !== "undefined") {
+    return JSON.parse(localStorage.getItem("favorites")) || [];
+  }
+  return []; // Return an empty array when not in the browser
 };
 
 export const addOrRemoveFavorite = (pokemonName) => {
-  const favorites = myFavoritePokemons();
+  if (typeof window !== "undefined") {
+    const favorites = myFavoritePokemons();
 
-  if (!favorites.includes(pokemonName)) {
-    favorites.push(pokemonName);
-  } else {
-    const index = favorites.indexOf(pokemonName);
-    if (index > -1) {
-      favorites.splice(index, 1);
+    if (!favorites.includes(pokemonName)) {
+      favorites.push(pokemonName);
+    } else {
+      const index = favorites.indexOf(pokemonName);
+      if (index > -1) {
+        favorites.splice(index, 1);
+      }
     }
-  }
 
-  localStorage.setItem("favorites", JSON.stringify(favorites));
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }
 };
