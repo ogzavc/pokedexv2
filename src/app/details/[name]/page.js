@@ -52,22 +52,15 @@ export default function Details() {
 
   return (
     <main className={styles.detailsPageWrapper}>
-      <Button
-        color="inherit"
-        variant="outlined"
-        className={styles.backButton}
-        onClick={handleBackClick}
-      >
-        <NavigateBeforeIcon />
-      </Button>
+      <div className={styles.detailsPageHeader}>
+        <Button color="inherit" variant="outlined" onClick={handleBackClick}>
+          <NavigateBeforeIcon />
+        </Button>
 
-      <Button
-        variant="outlined"
-        className={styles.backButton}
-        onClick={handleBackClick}
-      >
-        <FavoriteBorderIcon />
-      </Button>
+        <Button variant="outlined" onClick={handleBackClick}>
+          <FavoriteBorderIcon />
+        </Button>
+      </div>
 
       <section className={styles.detailsPage}>
         <div className={`${styles.division} ${styles.detailsContent}`}>

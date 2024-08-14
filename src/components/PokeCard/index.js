@@ -1,8 +1,10 @@
 "use client";
+import Image from "next/image";
 import { useAppSelector } from "../../lib/hooks";
 import { selectPokemonByName } from "../../lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { themeColors, iconColors, typeIcons } from "../../utils/constants";
-import Image from "next/image";
+import { idFormatter } from "../../utils/helpers";
+import PokeBadge from "../PokeBadge";
 import styles from "./pokeCard.module.css";
 
 function PokeCard({ pokemonName, isSmall = true, onClick }) {
@@ -24,25 +26,9 @@ function PokeCard({ pokemonName, isSmall = true, onClick }) {
       onClick={onClick}
     >
       <div className={styles.cardInfo}>
-        <div className={styles.pokeId}>#{id.toString().padStart(3, "0")}</div>
+        <div className={styles.pokeId}>{idFormatter(id)}</div>
         <div className={styles.pokeName}>{name}</div>
-        <div className={styles.typeContainer}>
-          {types.map((item, index) => {
-            const IconComponent = typeIcons[item.type.name];
-            return (
-              <div
-                key={index}
-                className={styles.typeBadge}
-                style={{ color: iconColors[item.type.name] }}
-              >
-                <IconComponent fontSize="small" />
-                <span className={styles.icon}>
-                  <b>{item.type.name}</b>
-                </span>
-              </div>
-            );
-          })}
-        </div>
+        <PokeBadge types={types} />
       </div>
       <div className={styles.pokeImageContainer}>
         <Image

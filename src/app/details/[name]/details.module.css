@@ -15,8 +15,9 @@
   margin: 0px;
 }
 
-.backButton {
+.detailsPageHeader {
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 
 .detailCard {

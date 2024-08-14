@@ -1,0 +1,19 @@
+.typeContainer {
+  display: flex;
+  margin-top: 5px;
+}
+
+.typeBadge {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 2px 8px;
+  margin-right: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 5px;
+}
