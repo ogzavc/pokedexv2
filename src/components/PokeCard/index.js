@@ -35,12 +35,12 @@ function PokeCard({ pokemonName, isSmall = true, onClick }) {
         }`}
       >
         <Image
-          priority
           src={sprites.other["official-artwork"].front_default}
           alt={name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw "
           className={styles.pokeImage}
+          loading="lazy"
         />
       </div>
     </div>

@@ -14,6 +14,7 @@ import {
   NavigateBeforeIcon,
   FavoriteIcon,
 } from "@/components/Icons";
+import Skeleton from "@mui/material/Skeleton";
 import styles from "./styles.module.css";
 
 export default function Details() {
@@ -22,8 +23,10 @@ export default function Details() {
   const dispatch = useAppDispatch();
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const pokemon = useAppSelector((state) => selectPokemonByName(state, name));
+  const status = useAppSelector((state) => state.pokemonDetails.status);
 
   useEffect(() => {
     if (name && !pokemon) {
@@ -32,15 +35,15 @@ export default function Details() {
   }, [name, pokemon, dispatch]);
 
   useEffect(() => {
+    if (status === "succeeded") {
+      setIsLoading(false);
+    }
+  }, [status]);
+
+  useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setIsFavorite(favorites.includes(name));
   }, [name]);
-
-  if (!pokemon) {
-    return null;
-  }
-
-  const { abilities, height, weight, stats, base_experience } = pokemon.data;
 
   const handleBackClick = () => {
     router.back();
@@ -50,6 +53,39 @@ export default function Details() {
     addOrRemoveFavorite(name);
     setIsFavorite(!isFavorite);
   };
+
+  if (isLoading) {
+    return (
+      <main className={`${styles.detailsPage} ${styles.detailsPageWrapper}`}>
+        <div className={styles.skeletonWrapper}>
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            width="100%"
+            height={300}
+          />
+          <Skeleton variant="rectangular" width="100%" height={200} />
+        </div>
+
+        <div className={styles.skeletonWrapper}>
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            width="100%"
+            height={200}
+          />
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            width="100%"
+            height={300}
+          />
+        </div>
+      </main>
+    );
+  }
+
+  const { abilities, height, weight, stats, base_experience } = pokemon.data;
 
   return (
     <main className={styles.detailsPageWrapper}>

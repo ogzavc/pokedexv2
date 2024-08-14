@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Button from "@mui/material/Button";
+import Skeleton from "@mui/material/Skeleton";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import styles from "./styles.module.css";
@@ -50,14 +51,23 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.homeWrapper}>
-        {!isLoading &&
-          pokemons.map((poke) => (
-            <PokeCard
-              key={poke.name}
-              pokemonName={poke.name}
-              onClick={() => handleCardClick(poke.name)}
-            />
-          ))}
+        {isLoading
+          ? Array.from({ length: 24 }).map((_, index) => (
+              <Skeleton
+                key={index}
+                variant="rounded"
+                animation="wave"
+                width={340}
+                height={150}
+              />
+            ))
+          : pokemons.map((poke) => (
+              <PokeCard
+                key={poke.name}
+                pokemonName={poke.name}
+                onClick={() => handleCardClick(poke.name)}
+              />
+            ))}
       </div>
 
       <div className={styles.pagination}>
