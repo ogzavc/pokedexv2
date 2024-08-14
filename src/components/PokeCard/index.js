@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import { useAppSelector } from "../../lib/hooks";
-import { selectPokemonByName } from "../../lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import { themeColors, iconColors, typeIcons } from "../../utils/constants";
-import { idFormatter } from "../../utils/helpers";
-import PokeBadge from "../PokeBadge";
+import { useAppSelector } from "@/lib/hooks";
+import { selectPokemonByName } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
+import { themeColors } from "@/utils/constants";
+import { idFormatter } from "@/utils/helpers";
+import { PokeBadge } from "@/components";
 import styles from "./pokeCard.module.css";
 
 function PokeCard({ pokemonName, isSmall = true, onClick }) {
@@ -16,8 +16,7 @@ function PokeCard({ pokemonName, isSmall = true, onClick }) {
   const { id, types, sprites } = data;
 
   const theme = (types && types[0]?.type?.name) || "normal";
-
-  const backgroundColor = themeColors[theme] || themeColors["normal"]; // Default to normal if theme is not found
+  const backgroundColor = themeColors[theme] || themeColors["normal"];
 
   return (
     <div
@@ -30,14 +29,17 @@ function PokeCard({ pokemonName, isSmall = true, onClick }) {
         <div className={styles.pokeName}>{name}</div>
         <PokeBadge types={types} />
       </div>
-      <div className={styles.pokeImageContainer}>
+      <div
+        className={`${styles.pokeImageContainer} ${
+          isSmall ? "" : styles.pokeImageFullWidth
+        }`}
+      >
         <Image
           priority
           src={sprites.other["official-artwork"].front_default}
           alt={name}
-          layout="responsive"
-          width={100}
-          height={100}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw "
           className={styles.pokeImage}
         />
       </div>

@@ -1,7 +1,7 @@
 import { Roboto } from "next/font/google";
-import "./globals.css";
-import AppBar from "../components/AppBar";
 import Container from "@mui/material/Container";
+import "./globals.css";
+import { AppBar } from "@/components";
 import StoreProvider from "./StoreProvider";
 
 const roboto = Roboto({

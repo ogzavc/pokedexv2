@@ -2,21 +2,18 @@
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Button from "@mui/material/Button";
-import { useAppSelector, useAppDispatch } from "../../../lib/hooks";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import {
   selectPokemonByName,
   fetchPokemonDetails,
-} from "../../../lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
+} from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import styles from "./details.module.css";
-import PokeCard from "../../../components/PokeCard";
-import PokeAbilities from "../../../components/PokeAbilities";
-import PokeAbout from "../../../components/PokeAbout";
-import PokeStats from "../../../components/PokeStats";
+import { PokeCard, PokeAbilities, PokeAbout, PokeStats } from "@/components";
 import {
   FavoriteBorderIcon,
   NavigateBeforeIcon,
   FavoriteIcon,
-} from "../../../components/Icons";
+} from "@/components/Icons";
 
 export default function Details() {
   const router = useRouter();

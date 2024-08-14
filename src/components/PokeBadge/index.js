@@ -1,5 +1,5 @@
 "use client";
-import { iconColors, typeIcons } from "../../utils/constants";
+import { iconColors, typeIcons } from "@/utils/constants";
 import styles from "./pokeBadge.module.css";
 
 function PokeBadge({ types = [] }) {

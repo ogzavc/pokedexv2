@@ -41,7 +41,8 @@
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  min-width: 60px;
+  min-width: 80px;
+  min-height: 80px;
   max-width: 300px;
   position: relative;
 }
@@ -53,5 +54,11 @@
 @media (min-width: 576px) {
   .pokeImageContainer {
     min-width: 120px;
+    min-height: 120px;
+  }
+
+  .pokeImageFullWidth {
+    min-width: 300px;
+    min-height: 300px;
   }
 }
