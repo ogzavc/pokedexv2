@@ -14,6 +14,10 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
+.myPokemonsNotFound {
+  text-align: center;
+}
+
 @media (max-width: 1600px) {
   .myPokemonsWrapper {
     grid-template-columns: repeat(3, 1fr);

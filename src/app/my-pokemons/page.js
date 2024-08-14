@@ -74,10 +74,10 @@ export default function MyPokemons() {
           ))}
         </div>
       ) : (
-        <span>
+        <div className={styles.myPokemonsNotFound}>
           There are no Pokémon here... Go to the details click the like button
           on the top right to collect one!
-        </span>
+        </div>
       )}
     </main>
   );
