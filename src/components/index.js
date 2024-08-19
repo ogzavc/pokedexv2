@@ -22,6 +22,7 @@ import PokeBadge from "./PokeBadge";
 import PokeCard from "./PokeCard";
 import PokeStats from "./PokeStats";
 import BackButton from "./BackButton";
+import SearchInput from "./SearchInput";
 
 export {
   Image,
@@ -46,4 +47,5 @@ export {
   PokeCard,
   PokeStats,
   BackButton,
+  SearchInput,
 };

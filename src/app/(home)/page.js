@@ -6,7 +6,13 @@ import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { resetPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
 import { typeOptions } from "@/utils/constants";
-import { PokeCard, Button, Autocomplete, TextField } from "@/components";
+import {
+  PokeCard,
+  Button,
+  Autocomplete,
+  TextField,
+  SearchInput,
+} from "@/components";
 import { NavigateBeforeIcon, NavigateNextIcon } from "@/components/Icons";
 import styles from "./styles.module.css";
 
@@ -58,6 +64,10 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.filtersWrapper}>
+        <div className={styles.searchFilter}>
+          <SearchInput onSelect={handleCardClick} />
+        </div>
+
         <Autocomplete
           id="type-filter-input"
           onChange={(event, newValue) => {

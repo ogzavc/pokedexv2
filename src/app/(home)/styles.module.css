@@ -18,9 +18,13 @@
 .filtersWrapper {
   width: 100%;
   padding-bottom: 24px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
-.typeFilter {
+.typeFilter,
+.searchFilter {
   width: 100%;
 }
 
@@ -38,13 +42,16 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .typeFilter {
-    width: 25%;
+  .typeFilter,
+  .searchFilter {
+    width: 24%;
   }
 
   .filtersWrapper {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
+    gap: 20px;
   }
 }
 
