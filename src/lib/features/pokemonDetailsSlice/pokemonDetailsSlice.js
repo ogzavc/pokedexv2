@@ -11,7 +11,7 @@ export const fetchPokemonDetails = createAsyncThunk(
       return { name, data: existingPokemon.data };
     }
 
-    const response = await axiosInstance.get(`/${name}`);
+    const response = await axiosInstance.get(`/pokemon/${name}`);
     return { name, data: response.data };
   }
 );

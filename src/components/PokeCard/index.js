@@ -1,4 +1,5 @@
 "use client";
+
 import { useAppSelector } from "@/lib/hooks";
 import { selectPokemonByName } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { themeColors } from "@/utils/constants";
@@ -11,11 +12,16 @@ function PokeCard({ pokemonName, isSmall = true, onClick }) {
     selectPokemonByName(state, pokemonName)
   );
 
-  const { data, name } = pokemon;
+  const { data = {}, name } = pokemon || {};
   const { id, types, sprites } = data;
 
   const theme = (types && types[0]?.type?.name) || "normal";
   const backgroundColor = themeColors[theme] || themeColors["normal"];
+
+  // Fallback image
+  const fallbackImage = "/unkown.png";
+  const pokemonImage =
+    sprites?.other?.["official-artwork"]?.front_default || fallbackImage;
 
   return (
     <div
@@ -34,10 +40,10 @@ function PokeCard({ pokemonName, isSmall = true, onClick }) {
         }`}
       >
         <Image
-          src={sprites.other["official-artwork"].front_default}
+          src={pokemonImage}
           alt={name}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw "
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
           className={styles.pokeImage}
           loading="lazy"
         />

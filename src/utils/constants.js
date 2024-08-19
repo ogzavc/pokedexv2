@@ -81,3 +81,26 @@ export const typeIcons = {
   stellar: Brightness7Icon,
   unknown: HelpIcon,
 };
+
+export const typeOptions = [
+  { label: "Normal", id: "normal" },
+  { label: "Fighting", id: "fighting" },
+  { label: "Flying", id: "flying" },
+  { label: "Poison", id: "poison" },
+  { label: "Ground", id: "ground" },
+  { label: "Rock", id: "rock" },
+  { label: "Bug", id: "bug" },
+  { label: "Ghost", id: "ghost" },
+  { label: "Steel", id: "steel" },
+  { label: "Fire", id: "fire" },
+  { label: "Water", id: "water" },
+  { label: "Grass", id: "grass" },
+  { label: "Electric", id: "electric" },
+  { label: "Psychic", id: "psychic" },
+  { label: "Ice", id: "ice" },
+  { label: "Dragon", id: "dragon" },
+  { label: "Dark", id: "dark" },
+  { label: "Fairy", id: "fairy" },
+  { label: "Stellar", id: "stellar" },
+  { label: "Unknown", id: "unknown" },
+];

@@ -4,8 +4,8 @@ import axiosInstance from "@/api/axiosInstance";
 // Thunk for fetching Pokémon data
 export const fetchPokemons = createAsyncThunk(
   "pokemon/fetchPokemons",
-  async (url = "/?limit=36") => {
-    const response = await axiosInstance.get(url);
+  async () => {
+    const response = await axiosInstance.get(`/pokemon/?limit=36`);
     return response.data;
   }
 );

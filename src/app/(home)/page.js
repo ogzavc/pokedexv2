@@ -2,11 +2,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { useIsMobile } from "@/hooks";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import styles from "./styles.module.css";
-import { PokeCard, Button, Skeleton } from "@/components";
+import { resetPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
+import { typeOptions } from "@/utils/constants";
+import {
+  PokeCard,
+  Button,
+  Skeleton,
+  Autocomplete,
+  TextField,
+} from "@/components";
 import { NavigateBeforeIcon, NavigateNextIcon } from "@/components/Icons";
+import styles from "./styles.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -15,6 +24,7 @@ export default function Home() {
   const prevPageUrl = useSelector((state) => state.pokemons.prevPageUrl);
   const pokemons = useSelector((state) => state.pokemons.data);
   const [isLoading, setIsLoading] = useState(true);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     dispatch(fetchPokemons());
@@ -46,8 +56,27 @@ export default function Home() {
     router.push(`/details/${pokemonName}`);
   };
 
+  const handleTypeSelect = (type) => {
+    dispatch(resetPokemonsByType());
+    router.push(`/type/${type}`);
+  };
+
   return (
     <main className={styles.main}>
+      <div className={styles.filtersWrapper}>
+        <Autocomplete
+          id="type-filter-input"
+          onChange={(event, newValue) => {
+            handleTypeSelect(newValue.id);
+          }}
+          className={styles.typeFilter}
+          options={typeOptions}
+          renderInput={(params) => (
+            <TextField {...params} label="Select a type" />
+          )}
+        />
+      </div>
+
       <div className={styles.homeWrapper}>
         {isLoading
           ? Array.from({ length: 24 }).map((_, index) => (
@@ -55,8 +84,8 @@ export default function Home() {
                 key={index}
                 variant="rounded"
                 animation="wave"
-                width={340}
-                height={150}
+                width={"100%"}
+                height={isMobile ? 120 : 150}
               />
             ))
           : pokemons.map((poke) => (

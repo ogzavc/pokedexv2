@@ -7,7 +7,7 @@
   min-height: 100vh;
 }
 
-.homeWrapper {
+.typeWrapper {
   display: grid;
   gap: 20px;
   width: 100%;
@@ -15,47 +15,26 @@
   grid-template-columns: 1fr;
 }
 
-.filtersWrapper {
-  width: 100%;
+.typeHeader {
   padding-bottom: 24px;
-}
-
-.typeFilter {
   width: 100%;
-}
-
-.pagination {
-  margin-top: 20px;
-}
-
-.pagination button {
-  min-width: 135px;
-  margin: 0px 10px;
+  justify-content: flex-start;
 }
 
 @media (min-width: 992px) {
-  .homeWrapper {
+  .typeWrapper {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .typeFilter {
-    width: 25%;
-  }
-
-  .filtersWrapper {
-    display: flex;
-    justify-content: flex-end;
   }
 }
 
 @media (min-width: 1200px) {
-  .homeWrapper {
+  .typeWrapper {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 1600px) {
-  .homeWrapper {
+  .typeWrapper {
     grid-template-columns: repeat(4, 1fr);
   }
 }

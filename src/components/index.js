@@ -13,6 +13,7 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
+import Autocomplete from "@mui/material/Autocomplete";
 
 import AppHeader from "./AppHeader";
 import PokeAbilities from "./PokeAbilities";
@@ -36,6 +37,7 @@ export {
   Container,
   Avatar,
   MenuItem,
+  Autocomplete,
   AppHeader,
   PokeAbilities,
   PokeAbout,
