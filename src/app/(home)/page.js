@@ -22,9 +22,10 @@ export default function Home() {
   const router = useRouter();
   const nextPageUrl = useSelector((state) => state.pokemons.nextPageUrl);
   const prevPageUrl = useSelector((state) => state.pokemons.prevPageUrl);
-  const pokemons = useSelector((state) => state.pokemons.data);
+  const pokemons = useSelector(
+    (state) => state.pokemons.data || Array.from({ length: 24 })
+  );
   const [isLoading, setIsLoading] = useState(true);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     dispatch(fetchPokemons());
@@ -78,23 +79,14 @@ export default function Home() {
       </div>
 
       <div className={styles.homeWrapper}>
-        {isLoading
-          ? Array.from({ length: 24 }).map((_, index) => (
-              <Skeleton
-                key={index}
-                variant="rounded"
-                animation="wave"
-                width={"100%"}
-                height={isMobile ? 120 : 150}
-              />
-            ))
-          : pokemons.map((poke) => (
-              <PokeCard
-                key={poke.name}
-                pokemonName={poke.name}
-                onClick={() => handleCardClick(poke.name)}
-              />
-            ))}
+        {pokemons.map((poke) => (
+          <PokeCard
+            key={poke?.name}
+            pokemonName={poke?.name}
+            onClick={() => handleCardClick(poke?.name)}
+            isLoading={isLoading}
+          />
+        ))}
       </div>
 
       <div className={styles.pagination}>

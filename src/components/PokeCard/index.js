@@ -2,12 +2,15 @@
 
 import { useAppSelector } from "@/lib/hooks";
 import { selectPokemonByName } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
+import { useIsMobile } from "@/hooks";
 import { themeColors } from "@/utils/constants";
 import { idFormatter } from "@/utils/helpers";
-import { PokeBadge, Image } from "@/components";
+import { PokeBadge, Image, Skeleton } from "@/components";
 import styles from "./styles.module.css";
 
-function PokeCard({ pokemonName, isSmall = true, onClick }) {
+function PokeCard({ pokemonName, isSmall = true, onClick, isLoading }) {
+  const isMobile = useIsMobile();
+
   const pokemon = useAppSelector((state) =>
     selectPokemonByName(state, pokemonName)
   );
@@ -22,6 +25,17 @@ function PokeCard({ pokemonName, isSmall = true, onClick }) {
   const fallbackImage = "/unkown.png";
   const pokemonImage =
     sprites?.other?.["official-artwork"]?.front_default || fallbackImage;
+
+  if (isLoading) {
+    return (
+      <Skeleton
+        variant="rounded"
+        animation="wave"
+        width={"100%"}
+        height={isMobile ? 120 : 150}
+      />
+    );
+  }
 
   return (
     <div

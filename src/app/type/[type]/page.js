@@ -45,23 +45,14 @@ export default function TypeList() {
       </div>
 
       <div className={styles.typeWrapper}>
-        {isLoading
-          ? Array.from({ length: 24 }).map((_, index) => (
-              <Skeleton
-                key={index}
-                variant="rounded"
-                animation="wave"
-                width={"100%"}
-                height={isMobile ? 120 : 150}
-              />
-            ))
-          : pokemons.map(({ pokemon }) => (
-              <PokeCard
-                key={pokemon.name}
-                pokemonName={pokemon.name}
-                onClick={() => handleCardClick(pokemon.name)}
-              />
-            ))}
+        {pokemons.map(({ pokemon }) => (
+          <PokeCard
+            key={pokemon.name}
+            pokemonName={pokemon.name}
+            onClick={() => handleCardClick(pokemon.name)}
+            isLoading={isLoading}
+          />
+        ))}
       </div>
     </main>
   );
