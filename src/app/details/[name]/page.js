@@ -13,12 +13,9 @@ import {
   PokeStats,
   Button,
   Skeleton,
+  BackButton,
 } from "@/components";
-import {
-  FavoriteBorderIcon,
-  NavigateBeforeIcon,
-  FavoriteIcon,
-} from "@/components/Icons";
+import { FavoriteBorderIcon, FavoriteIcon } from "@/components/Icons";
 import { addOrRemoveFavorite } from "@/utils/helpers";
 import styles from "./styles.module.css";
 
@@ -49,10 +46,6 @@ export default function Details() {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setIsFavorite(favorites.includes(name));
   }, [name]);
-
-  const handleBackClick = () => {
-    router.back();
-  };
 
   const handleFavoriteClick = () => {
     addOrRemoveFavorite(name);
@@ -95,9 +88,7 @@ export default function Details() {
   return (
     <main className={styles.detailsPageWrapper}>
       <div className={styles.detailsPageHeader}>
-        <Button color="inherit" variant="outlined" onClick={handleBackClick}>
-          <NavigateBeforeIcon />
-        </Button>
+        <BackButton />
 
         <Button variant="outlined" onClick={handleFavoriteClick}>
           {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}

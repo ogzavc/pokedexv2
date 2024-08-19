@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Avatar, Button, TextField } from "@/components";
-import { NavigateBeforeIcon } from "@/components/Icons";
+import { Avatar, BackButton, TextField } from "@/components";
 import { myFavoritePokemons } from "@/utils/helpers";
 import styles from "./styles.module.css";
 
@@ -9,16 +8,10 @@ export default function Details() {
   const router = useRouter();
   const pokemons = myFavoritePokemons();
 
-  const handleBackClick = () => {
-    router.back();
-  };
-
   return (
     <main className={styles.myProfileWrapper}>
       <div className={styles.myProfileHeader}>
-        <Button color="inherit" variant="outlined" onClick={handleBackClick}>
-          <NavigateBeforeIcon />
-        </Button>
+        <BackButton />
       </div>
 
       <section className={styles.myProfilePage}>

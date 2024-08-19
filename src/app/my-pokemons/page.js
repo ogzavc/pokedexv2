@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { myFavoritePokemons } from "@/utils/helpers";
-import { PokeCard, Skeleton, Button } from "@/components";
-import { NavigateBeforeIcon } from "@/components/Icons";
+import { PokeCard, Skeleton, BackButton } from "@/components";
 import styles from "./styles.module.css";
 
 export default function MyPokemons() {
@@ -33,10 +32,6 @@ export default function MyPokemons() {
     router.push(`/details/${pokemonName}`);
   };
 
-  const handleBackClick = () => {
-    router.back();
-  };
-
   if (isLoading) {
     return (
       <main className={styles.main}>
@@ -58,9 +53,7 @@ export default function MyPokemons() {
   return (
     <main className={styles.myPokemons}>
       <div className={styles.myPokemonsHeader}>
-        <Button color="inherit" variant="outlined" onClick={handleBackClick}>
-          <NavigateBeforeIcon />
-        </Button>
+        <BackButton />
       </div>
 
       {pokemons.length > 0 ? (

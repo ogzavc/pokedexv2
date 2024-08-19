@@ -5,8 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useIsMobile } from "@/hooks";
 import { fetchPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import { PokeCard, Skeleton, Button } from "@/components";
-import { NavigateBeforeIcon } from "@/components/Icons";
+import { PokeCard, Skeleton, BackButton } from "@/components";
 import styles from "./styles.module.css";
 
 export default function TypeList() {
@@ -39,16 +38,10 @@ export default function TypeList() {
     router.push(`/details/${pokemonName}`);
   };
 
-  const handleBackClick = () => {
-    router.back();
-  };
-
   return (
     <main className={styles.main}>
       <div className={styles.typeHeader}>
-        <Button color="inherit" variant="outlined" onClick={handleBackClick}>
-          <NavigateBeforeIcon />
-        </Button>
+        <BackButton />
       </div>
 
       <div className={styles.typeWrapper}>
