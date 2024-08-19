@@ -2,18 +2,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { useIsMobile } from "@/hooks";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { resetPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
 import { typeOptions } from "@/utils/constants";
-import {
-  PokeCard,
-  Button,
-  Skeleton,
-  Autocomplete,
-  TextField,
-} from "@/components";
+import { PokeCard, Button, Autocomplete, TextField } from "@/components";
 import { NavigateBeforeIcon, NavigateNextIcon } from "@/components/Icons";
 import styles from "./styles.module.css";
 

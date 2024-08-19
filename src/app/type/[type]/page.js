@@ -2,10 +2,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useRouter } from "next/navigation";
-import { useIsMobile } from "@/hooks";
 import { fetchPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import { PokeCard, Skeleton, BackButton } from "@/components";
+import { PokeCard, BackButton } from "@/components";
 import styles from "./styles.module.css";
 
 export default function TypeList() {
@@ -16,7 +15,6 @@ export default function TypeList() {
   );
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     dispatch(fetchPokemonsByType(type));
