@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useRouter } from "next/navigation";
 import { fetchPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import { PokeCard, BackButton } from "@/components";
+import { PokeCard, BackButton, Skeleton } from "@/components";
 import styles from "./styles.module.css";
 
 export default function TypeList() {
@@ -29,6 +29,8 @@ export default function TypeList() {
       ).then(() => {
         setIsLoading(false);
       });
+    } else if (pokemons?.length === 0 && status === "succeeded") {
+      setIsLoading(false);
     }
   }, [pokemons, status, dispatch]);
 
@@ -40,6 +42,20 @@ export default function TypeList() {
     <main className={styles.main}>
       <div className={styles.typeHeader}>
         <BackButton />
+      </div>
+      <div className={styles.typeTitleWrapper}>
+        <div className={styles.typeTitle}>{type}</div>
+
+        {isLoading ? (
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            width={300}
+            height={20}
+          />
+        ) : (
+          <div>{pokemons.length} Pokemons Found</div>
+        )}
       </div>
 
       <div className={styles.typeWrapper}>

@@ -19,6 +19,7 @@ const pokemonsByTypeSlice = createSlice({
   },
   reducers: {
     resetPokemonsByType(state) {
+      state.status = "idle";
       state.data = [];
     },
   },
