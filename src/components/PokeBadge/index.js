@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { iconColors, typeIcons } from "@/utils/constants";
 import styles from "./styles.module.css";
 
@@ -23,4 +24,4 @@ function PokeBadge({ types = [] }) {
   );
 }
 
-export default PokeBadge;
+export default memo(PokeBadge);

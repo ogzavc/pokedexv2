@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import {
@@ -47,10 +47,10 @@ export default function Details() {
     setIsFavorite(favorites.includes(name));
   }, [name]);
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = useCallback(() => {
     addOrRemoveFavorite(name);
     setIsFavorite(!isFavorite);
-  };
+  }, [name, isFavorite]);
 
   if (isLoading) {
     return (

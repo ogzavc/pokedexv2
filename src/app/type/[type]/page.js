@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { fetchPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
@@ -34,9 +34,12 @@ export default function TypeList() {
     }
   }, [pokemons, status, dispatch]);
 
-  const handleCardClick = (pokemonName) => {
-    router.push(`/details/${pokemonName}`);
-  };
+  const handleCardClick = useCallback(
+    (pokemonName) => {
+      router.push(`/details/${pokemonName}`);
+    },
+    [router]
+  );
 
   return (
     <main className={styles.main}>

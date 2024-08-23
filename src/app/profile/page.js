@@ -1,11 +1,9 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { Avatar, BackButton, TextField } from "@/components";
 import { myFavoritePokemons } from "@/utils/helpers";
 import styles from "./styles.module.css";
 
 export default function Details() {
-  const router = useRouter();
   const pokemons = myFavoritePokemons();
 
   return (

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
@@ -38,28 +38,34 @@ export default function Home() {
     }
   }, [pokemons, dispatch]);
 
-  const handleNextPage = () => {
+  const handleNextPage = useCallback(() => {
     if (nextPageUrl) {
       setIsLoading(true);
       dispatch(fetchPokemons(nextPageUrl));
     }
-  };
+  }, [nextPageUrl, dispatch]);
 
-  const handlePrevPage = () => {
+  const handlePrevPage = useCallback(() => {
     if (prevPageUrl) {
       setIsLoading(true);
       dispatch(fetchPokemons(prevPageUrl));
     }
-  };
+  }, [prevPageUrl, dispatch]);
 
-  const handleCardClick = (pokemonName) => {
-    router.push(`/details/${pokemonName}`);
-  };
+  const handleCardClick = useCallback(
+    (pokemonName) => {
+      router.push(`/details/${pokemonName}`);
+    },
+    [router]
+  );
 
-  const handleTypeSelect = (type) => {
-    dispatch(resetPokemonsByType());
-    router.push(`/type/${type}`);
-  };
+  const handleTypeSelect = useCallback(
+    (type) => {
+      dispatch(resetPokemonsByType());
+      router.push(`/type/${type}`);
+    },
+    [dispatch, router]
+  );
 
   return (
     <main className={styles.main}>

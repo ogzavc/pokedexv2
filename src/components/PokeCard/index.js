@@ -1,5 +1,5 @@
 "use client";
-
+import { memo } from "react";
 import { useAppSelector } from "@/lib/hooks";
 import { selectPokemonByName } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { useIsMobile } from "@/hooks";
@@ -66,4 +66,4 @@ function PokeCard({ pokemonName, isSmall = true, onClick, isLoading }) {
   );
 }
 
-export default PokeCard;
+export default memo(PokeCard);

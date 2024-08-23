@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
@@ -28,9 +28,12 @@ export default function MyPokemons() {
     }
   }, [pokemons, dispatch]);
 
-  const handleCardClick = (pokemonName) => {
-    router.push(`/details/${pokemonName}`);
-  };
+  const handleCardClick = useCallback(
+    (pokemonName) => {
+      router.push(`/details/${pokemonName}`);
+    },
+    [router]
+  );
 
   return (
     <main className={styles.myPokemons}>
