@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
@@ -9,7 +9,7 @@ import { PokeCard, BackButton } from "@/components";
 import styles from "./styles.module.css";
 
 export default function MyPokemons() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const pokemons = myFavoritePokemons();
   const [isLoading, setIsLoading] = useState(true);

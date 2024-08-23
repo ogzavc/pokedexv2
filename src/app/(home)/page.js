@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
@@ -17,11 +17,11 @@ import { NavigateBeforeIcon, NavigateNextIcon } from "@/components/Icons";
 import styles from "./styles.module.css";
 
 export default function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const router = useRouter();
-  const nextPageUrl = useSelector((state) => state.pokemons.nextPageUrl);
-  const prevPageUrl = useSelector((state) => state.pokemons.prevPageUrl);
-  const pokemons = useSelector(
+  const nextPageUrl = useAppSelector((state) => state.pokemons.nextPageUrl);
+  const prevPageUrl = useAppSelector((state) => state.pokemons.prevPageUrl);
+  const pokemons = useAppSelector(
     (state) => state.pokemons.data || Array.from({ length: 24 })
   );
   const [isLoading, setIsLoading] = useState(true);

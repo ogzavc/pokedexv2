@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { fetchPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
@@ -10,10 +10,10 @@ import styles from "./styles.module.css";
 export default function TypeList() {
   const { type } = useParams();
   const router = useRouter();
-  const { data: pokemons, status } = useSelector(
+  const { data: pokemons, status } = useAppSelector(
     (state) => state.pokemonsByType
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

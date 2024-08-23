@@ -1,45 +1,61 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { Autocomplete, TextField } from "@/components";
 import styles from "./styles.module.css";
 import useDebounce from "@/hooks/useDebounce";
-import axiosInstance from "@/api/axiosInstance"; // Import your axios instance
+import { fetchPokemonList } from "@/lib/features/pokemonSearchSlice/pokemonSearchSlice";
 
 export default function SearchInput({ onSelect }) {
   const [inputValue, setInputValue] = useState("");
   const [noOptionText, setNoOptionText] = useState("Start typing to search");
   const debouncedInputValue = useDebounce(inputValue, 600);
   const [dynamicOptions, setDynamicOptions] = useState([]);
+  const dispatch = useAppDispatch();
+
+  const pokemonList = useAppSelector((state) => state.pokemonSearch?.data);
+  const status = useAppSelector((state) => state.pokemonSearch?.status);
 
   useEffect(() => {
-    if (debouncedInputValue) {
-      setNoOptionText("Searching...");
-      axiosInstance
-        .get(`/pokemon/${debouncedInputValue}/`)
-        .then((response) => {
-          const data = response.data;
-          if (data) {
-            setDynamicOptions([data]);
-          } else {
-            setDynamicOptions([]);
-            setNoOptionText("No Pokémon found");
-          }
-        })
-        .catch(() => {
-          setDynamicOptions([]);
-          setNoOptionText("No Pokémon found");
-        });
+    const handleFetchPokemonList = () => {
+      dispatch(fetchPokemonList());
+    };
+
+    if (debouncedInputValue && pokemonList.length === 0) {
+      if (pokemonList.length === 0) {
+        handleFetchPokemonList();
+      }
     } else {
-      setDynamicOptions([]);
-      setNoOptionText("Start typing to search");
+      resetSearchState();
     }
-  }, [debouncedInputValue]);
+  }, [debouncedInputValue, pokemonList.length, dispatch]);
 
   useEffect(() => {
-    if (inputValue) {
-      setNoOptionText("Searching...");
+    setNoOptionText("Searching...");
+    const filterPokemonList = () => {
+      const filteredOptions = pokemonList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(debouncedInputValue.toLowerCase())
+      );
+
+      if (filteredOptions.length > 0) {
+        setDynamicOptions(filteredOptions);
+      } else {
+        setDynamicOptions([]);
+        setNoOptionText("No Pokémon found");
+      }
+    };
+
+    if (debouncedInputValue) {
+      filterPokemonList();
+    } else {
+      resetSearchState();
     }
-  }, [inputValue]);
+  }, [pokemonList, debouncedInputValue]);
+
+  const resetSearchState = () => {
+    setDynamicOptions([]);
+    setNoOptionText("Start typing to search");
+  };
 
   return (
     <Autocomplete
