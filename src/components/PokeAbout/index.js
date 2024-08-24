@@ -10,7 +10,8 @@ function PokeAbout({ height, weight, experience }) {
         <strong>Weight:</strong> {weight / 10} kg
       </div>
       <div className={styles.infoItem}>
-        <strong>Base Experience:</strong> {experience} xp
+        <strong>Base Experience:</strong>{" "}
+        {experience ? `${experience} xp` : "unkown"}
       </div>
     </div>
   );

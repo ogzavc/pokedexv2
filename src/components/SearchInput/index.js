@@ -41,7 +41,9 @@ export default function SearchInput({ onSelect }) {
         setDynamicOptions(filteredOptions);
       } else {
         setDynamicOptions([]);
-        setNoOptionText("No Pokémon found");
+        if (status === "succeeded") {
+          setNoOptionText("No Pokémon found");
+        }
       }
     };
 
@@ -50,7 +52,7 @@ export default function SearchInput({ onSelect }) {
     } else {
       resetSearchState();
     }
-  }, [pokemonList, debouncedInputValue]);
+  }, [pokemonList, debouncedInputValue, status]);
 
   const resetSearchState = () => {
     setDynamicOptions([]);

@@ -14,6 +14,8 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import Autocomplete from "@mui/material/Autocomplete";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 import AppHeader from "./AppHeader";
 import PokeAbilities from "./PokeAbilities";
@@ -23,6 +25,7 @@ import PokeCard from "./PokeCard";
 import PokeStats from "./PokeStats";
 import BackButton from "./BackButton";
 import SearchInput from "./SearchInput";
+import ErrorBoundary from "./ErrorBoundary";
 
 export {
   Image,
@@ -40,6 +43,8 @@ export {
   Avatar,
   MenuItem,
   Autocomplete,
+  Snackbar,
+  Alert,
   AppHeader,
   PokeAbilities,
   PokeAbout,
@@ -48,4 +53,5 @@ export {
   PokeStats,
   BackButton,
   SearchInput,
+  ErrorBoundary,
 };

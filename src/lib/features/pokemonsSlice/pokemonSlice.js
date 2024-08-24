@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "@/api/axiosInstance";
 
-// Thunk for fetching Pokémon data
 export const fetchPokemons = createAsyncThunk(
   "pokemon/fetchPokemons",
-  async (url = `/pokemon/?limit=36`) => {
-    const response = await axiosInstance.get(url);
-    return response.data;
+  async (url = `/pokemon/?limit=36`, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get(url);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
@@ -30,10 +33,14 @@ const pokemonsSlice = createSlice({
         state.data = action.payload.results;
         state.nextPageUrl = action.payload.next;
         state.prevPageUrl = action.payload.previous;
+        state.error = null;
       })
       .addCase(fetchPokemons.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
+        state.error = {
+          message: action.payload || action.error.message,
+          id: new Date().getTime(),
+        };
       });
   },
 });

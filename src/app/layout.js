@@ -1,6 +1,6 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import { AppHeader, Container } from "@/components";
+import { AppHeader, Container, ErrorBoundary } from "@/components";
 import StoreProvider from "./StoreProvider";
 
 const roboto = Roboto({
@@ -18,8 +18,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <StoreProvider>
         <body className={roboto.className}>
-          <AppHeader />
-          <Container maxWidth="xl">{children}</Container>
+          <ErrorBoundary>
+            <AppHeader />
+            <Container maxWidth="xl">{children}</Container>
+          </ErrorBoundary>
         </body>
       </StoreProvider>
     </html>

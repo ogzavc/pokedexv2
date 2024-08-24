@@ -37,10 +37,10 @@ export default function Details() {
   }, [name, pokemon, dispatch]);
 
   useEffect(() => {
-    if (status === "succeeded") {
+    if (pokemon?.data && status === "succeeded") {
       setIsLoading(false);
     }
-  }, [status]);
+  }, [pokemon?.data, status]);
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -83,7 +83,8 @@ export default function Details() {
     );
   }
 
-  const { abilities, height, weight, stats, base_experience } = pokemon.data;
+  const { abilities, height, weight, stats, base_experience } =
+    pokemon?.data || {};
 
   return (
     <main className={styles.detailsPageWrapper}>

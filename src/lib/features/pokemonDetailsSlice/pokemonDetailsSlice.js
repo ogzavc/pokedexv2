@@ -3,16 +3,20 @@ import axiosInstance from "@/api/axiosInstance";
 
 export const fetchPokemonDetails = createAsyncThunk(
   "pokemonDetails/fetchPokemonDetails",
-  async (name, { getState }) => {
-    const state = getState();
-    const existingPokemon = selectPokemonByName(state, name);
+  async (name, { getState, rejectWithValue }) => {
+    try {
+      const state = getState();
+      const existingPokemon = selectPokemonByName(state, name);
 
-    if (existingPokemon) {
-      return { name, data: existingPokemon.data };
+      if (existingPokemon) {
+        return { name, data: existingPokemon.data };
+      }
+
+      const response = await axiosInstance.get(`/pokemon/${name}`);
+      return { name, data: response.data };
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
     }
-
-    const response = await axiosInstance.get(`/pokemon/${name}`);
-    return { name, data: response.data };
   }
 );
 
@@ -38,10 +42,14 @@ const pokemonDetailsSlice = createSlice({
         if (!existingPokemon) {
           state.details.push({ name, data });
         }
+        state.error = null;
       })
       .addCase(fetchPokemonDetails.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
+        state.error = {
+          message: action.payload || action.error.message,
+          id: new Date().getTime(),
+        };
       });
   },
 });

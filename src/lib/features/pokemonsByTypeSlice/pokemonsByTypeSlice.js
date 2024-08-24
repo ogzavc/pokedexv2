@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "@/api/axiosInstance";
 
-// Thunk for fetching Pokémon data by type
 export const fetchPokemonsByType = createAsyncThunk(
   "pokemon/fetchPokemonsByType",
-  async (type) => {
-    const response = await axiosInstance.get(`/type/${type}`);
-    return response.data;
+  async (type, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get(`/type/${type}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
@@ -21,6 +24,7 @@ const pokemonsByTypeSlice = createSlice({
     resetPokemonsByType(state) {
       state.status = "idle";
       state.data = [];
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -31,10 +35,14 @@ const pokemonsByTypeSlice = createSlice({
       .addCase(fetchPokemonsByType.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload.pokemon;
+        state.error = null;
       })
       .addCase(fetchPokemonsByType.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
+        state.error = {
+          message: action.payload || action.error.message,
+          id: new Date().getTime(),
+        };
       });
   },
 });
