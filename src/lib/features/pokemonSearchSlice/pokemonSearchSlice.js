@@ -48,4 +48,8 @@ const pokemonSearchSlice = createSlice({
   },
 });
 
+export const selectPokemonList = (state) => state.pokemonSearch.data;
+export const selectPokemonListStatus = (state) => state.pokemonSearch.status;
+export const selectPokemonListError = (state) => state.pokemonSearch.error;
+
 export default pokemonSearchSlice.reducer;

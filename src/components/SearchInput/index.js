@@ -4,7 +4,11 @@ import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { Autocomplete, TextField } from "@/components";
 import styles from "./styles.module.css";
 import useDebounce from "@/hooks/useDebounce";
-import { fetchPokemonList } from "@/lib/features/pokemonSearchSlice/pokemonSearchSlice";
+import {
+  fetchPokemonList,
+  selectPokemonList,
+  selectPokemonListStatus,
+} from "@/lib/features/pokemonSearchSlice/pokemonSearchSlice";
 
 export default function SearchInput({ onSelect }) {
   const [inputValue, setInputValue] = useState("");
@@ -13,8 +17,8 @@ export default function SearchInput({ onSelect }) {
   const [dynamicOptions, setDynamicOptions] = useState([]);
   const dispatch = useAppDispatch();
 
-  const pokemonList = useAppSelector((state) => state.pokemonSearch?.data);
-  const status = useAppSelector((state) => state.pokemonSearch?.status);
+  const pokemonList = useAppSelector(selectPokemonList);
+  const status = useAppSelector(selectPokemonListStatus);
 
   useEffect(() => {
     const handleFetchPokemonList = () => {

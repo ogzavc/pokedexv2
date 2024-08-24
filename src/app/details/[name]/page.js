@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import {
-  selectPokemonByName,
+  selectPokemonDetailsStatus,
   fetchPokemonDetails,
 } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
+import { usePokemonDetails } from "@/lib/hooks";
 import {
   PokeCard,
   PokeAbilities,
@@ -20,15 +21,14 @@ import { addOrRemoveFavorite } from "@/utils/helpers";
 import styles from "./styles.module.css";
 
 export default function Details() {
-  const router = useRouter();
   const { name } = useParams();
   const dispatch = useAppDispatch();
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const pokemon = useAppSelector((state) => selectPokemonByName(state, name));
-  const status = useAppSelector((state) => state.pokemonDetails.status);
+  const pokemon = usePokemonDetails(name);
+  const status = useAppSelector(selectPokemonDetailsStatus);
 
   useEffect(() => {
     if (name && !pokemon) {

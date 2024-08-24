@@ -2,7 +2,11 @@
 import { useEffect, useState, useCallback } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { useParams, useRouter } from "next/navigation";
-import { fetchPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
+import {
+  fetchPokemonsByType,
+  selectPokemonsByType,
+  selectPokemonsByTypeStatus,
+} from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { PokeCard, BackButton, Skeleton } from "@/components";
 import styles from "./styles.module.css";
@@ -10,9 +14,10 @@ import styles from "./styles.module.css";
 export default function TypeList() {
   const { type } = useParams();
   const router = useRouter();
-  const { data: pokemons, status } = useAppSelector(
-    (state) => state.pokemonsByType
-  );
+
+  const pokemons = useAppSelector(selectPokemonsByType);
+  const status = useAppSelector(selectPokemonsByTypeStatus);
+
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(true);
 

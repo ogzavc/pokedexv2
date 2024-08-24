@@ -2,7 +2,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
-import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
+import {
+  fetchPokemons,
+  selectPokemons,
+  selectNextPageUrl,
+  selectPrevPageUrl,
+} from "@/lib/features/pokemonsSlice/pokemonSlice";
 import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
 import { resetPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
 import { typeOptions } from "@/utils/constants";
@@ -19,11 +24,11 @@ import styles from "./styles.module.css";
 export default function Home() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const nextPageUrl = useAppSelector((state) => state.pokemons.nextPageUrl);
-  const prevPageUrl = useAppSelector((state) => state.pokemons.prevPageUrl);
-  const pokemons = useAppSelector(
-    (state) => state.pokemons.data || Array.from({ length: 24 })
-  );
+
+  const nextPageUrl = useAppSelector(selectNextPageUrl);
+  const prevPageUrl = useAppSelector(selectPrevPageUrl);
+  const pokemons = useAppSelector(selectPokemons) || Array.from({ length: 24 });
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

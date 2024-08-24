@@ -47,5 +47,10 @@ const pokemonsByTypeSlice = createSlice({
   },
 });
 
+export const selectPokemonsByType = (state) => state.pokemonsByType.data;
+export const selectPokemonsByTypeStatus = (state) =>
+  state.pokemonsByType.status;
+export const selectPokemonsByTypeError = (state) => state.pokemonsByType.error;
+
 export const { resetPokemonsByType } = pokemonsByTypeSlice.actions;
 export default pokemonsByTypeSlice.reducer;

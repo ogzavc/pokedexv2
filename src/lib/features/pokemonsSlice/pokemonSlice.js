@@ -45,4 +45,10 @@ const pokemonsSlice = createSlice({
   },
 });
 
+export const selectPokemons = (state) => state.pokemons.data;
+export const selectNextPageUrl = (state) => state.pokemons.nextPageUrl;
+export const selectPrevPageUrl = (state) => state.pokemons.prevPageUrl;
+export const selectPokemonsStatus = (state) => state.pokemons.status;
+export const selectPokemonsError = (state) => state.pokemons.error;
+
 export default pokemonsSlice.reducer;

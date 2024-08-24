@@ -1,7 +1,6 @@
 "use client";
 import { memo } from "react";
-import { useAppSelector } from "@/lib/hooks";
-import { selectPokemonByName } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
+import { usePokemonDetails } from "@/lib/hooks";
 import { useIsMobile } from "@/hooks";
 import { themeColors } from "@/utils/constants";
 import { idFormatter } from "@/utils/helpers";
@@ -11,9 +10,7 @@ import styles from "./styles.module.css";
 function PokeCard({ pokemonName, isSmall = true, onClick, isLoading }) {
   const isMobile = useIsMobile();
 
-  const pokemon = useAppSelector((state) =>
-    selectPokemonByName(state, pokemonName)
-  );
+  const pokemon = usePokemonDetails(pokemonName);
 
   const { data = {}, name } = pokemon || {};
   const { id, types, sprites } = data;
@@ -57,7 +54,7 @@ function PokeCard({ pokemonName, isSmall = true, onClick, isLoading }) {
           src={pokemonImage}
           alt={name}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
+          sizes="100vw"
           className={styles.pokeImage}
           loading="lazy"
         />

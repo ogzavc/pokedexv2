@@ -56,5 +56,8 @@ const pokemonDetailsSlice = createSlice({
 
 export const selectPokemonByName = (state, name) =>
   state.pokemonDetails.details.find((pokemon) => pokemon.name === name);
+export const selectPokemonDetailsStatus = (state) =>
+  state.pokemonDetails.status;
+export const selectPokemonDetailsError = (state) => state.pokemonDetails.error;
 
 export default pokemonDetailsSlice.reducer;
