@@ -7,9 +7,9 @@ import {
   selectPokemons,
   selectNextPageUrl,
   selectPrevPageUrl,
-} from "@/lib/features/pokemonsSlice/pokemonSlice";
-import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import { resetPokemonsByType } from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
+  fetchPokemonDetails,
+  resetPokemonsByType,
+} from "@/lib/features";
 import { typeOptions } from "@/utils/constants";
 import {
   PokeCard,

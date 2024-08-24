@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { useAppSelector, useAppDispatch, usePokemonDetails } from "@/lib/hooks";
 import {
-  selectPokemonDetailsStatus,
   fetchPokemonDetails,
-} from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
-import { usePokemonDetails } from "@/lib/hooks";
+  selectPokemonDetailsStatus,
+} from "@/lib/features";
 import {
   PokeCard,
   PokeAbilities,

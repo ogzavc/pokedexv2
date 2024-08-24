@@ -2,8 +2,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useAppDispatch } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
-import { fetchPokemons } from "@/lib/features/pokemonsSlice/pokemonSlice";
-import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
+import { fetchPokemons, fetchPokemonDetails } from "@/lib/features";
 import { myFavoritePokemons } from "@/utils/helpers";
 import { PokeCard, BackButton } from "@/components";
 import styles from "./styles.module.css";

@@ -2,6 +2,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Snackbar, Alert } from "@/components";
+import {
+  selectPokemonListError,
+  selectPokemonsByTypeError,
+  selectPokemonDetailsError,
+  selectPokemonsError,
+} from "@/lib/features";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -57,10 +63,10 @@ class ErrorBoundary extends React.Component {
 
 const mapStateToProps = (state) => ({
   error:
-    state.pokemonSearch.error ||
-    state.pokemonsByType.error ||
-    state.pokemonDetails.error ||
-    state.pokemons.error,
+    selectPokemonListError(state) ||
+    selectPokemonsByTypeError(state) ||
+    selectPokemonDetailsError(state) ||
+    selectPokemonsError(state),
 });
 
 export default connect(mapStateToProps)(ErrorBoundary);

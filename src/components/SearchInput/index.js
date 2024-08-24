@@ -8,7 +8,7 @@ import {
   fetchPokemonList,
   selectPokemonList,
   selectPokemonListStatus,
-} from "@/lib/features/pokemonSearchSlice/pokemonSearchSlice";
+} from "@/lib/features";
 
 export default function SearchInput({ onSelect }) {
   const [inputValue, setInputValue] = useState("");

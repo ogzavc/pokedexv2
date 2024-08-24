@@ -3,11 +3,11 @@ import { useEffect, useState, useCallback } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { useParams, useRouter } from "next/navigation";
 import {
+  fetchPokemonDetails,
   fetchPokemonsByType,
   selectPokemonsByType,
   selectPokemonsByTypeStatus,
-} from "@/lib/features/pokemonsByTypeSlice/pokemonsByTypeSlice";
-import { fetchPokemonDetails } from "@/lib/features/pokemonDetailsSlice/pokemonDetailsSlice";
+} from "@/lib/features";
 import { PokeCard, BackButton, Skeleton } from "@/components";
 import styles from "./styles.module.css";
 
