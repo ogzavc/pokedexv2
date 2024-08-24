@@ -100,7 +100,6 @@
 
 .skeletonWrapper {
   display: flex;
-  width: 50%;
   flex-direction: column;
   gap: 20px;
   margin: 10px;
